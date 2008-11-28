@@ -8,9 +8,10 @@ Version:	0.0.3
 Release:	%mkrel 1
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
-Group:		Development/Libraries
+Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
 Source:		http://nice.freedesktop.org/releases/%{oname}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildrequires:	libgstreamer-plugins-base0.10-devel
 Buildrequires:	gtk-doc
 Requires:	%{libname} = %{version}
