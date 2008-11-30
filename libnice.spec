@@ -19,13 +19,13 @@ Requires:	%{libname} = %{version}
 
 %description
 Nice is an implementation of the IETF's draft Interactive Connectivity Establishment
- standard (ICE). It provides GLib-based library, libnice.
+standard (ICE). It provides GLib-based library, libnice.
 
 ICE is useful for applications that want to establish peer-to-peer UDP data streams.
- It automates the process of traversing NATs and provides security against some attacks.
+It automates the process of traversing NATs and provides security against some attacks.
 
 Existing standards that use ICE include the Session Initiation Protocol (SIP) and Jingle,
- XMPP extension for audio/video calls.
+XMPP extension for audio/video calls.
 
 Nice includes integration with GStreamer. It is used by Farsight for RTP transport. 
 
