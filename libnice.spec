@@ -4,13 +4,13 @@
 %define develname	%mklibname %{oname} -d
 
 Name:		libnice
-Version:	0.0.3
+Version:	0.0.4
 Release:	%mkrel 1
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
-Source:		http://nice.freedesktop.org/releases/%{oname}-%{version}.tar.gz
+Source:		http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildrequires:	libgstreamer-plugins-base-devel
 Buildrequires:	gtk-doc
@@ -77,8 +77,7 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so.%{major}
-%{_libdir}/*.so.%{major}.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root,-)
