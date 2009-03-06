@@ -4,7 +4,7 @@
 %define develname	%mklibname %{oname} -d
 
 Name:		libnice
-Version:	0.0.4
+Version:	0.0.5
 Release:	%mkrel 1
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
@@ -49,10 +49,10 @@ documentation for %{oname}. If you like to develop programs using %{oname},
 you will need to install %{oname}-devel.
 
 %prep
-%setup -q -n %{oname}-%{version}
+%setup -q 
 
 %build
-autoreconf -fiv
+#autoreconf -fiv
 %configure
 %make
 
@@ -81,7 +81,9 @@ rm -rf %{buildroot}
 
 %files -n %{develname}
 %defattr(-,root,root,-)
-%{_includedir}/%{oname}/
+%{_includedir}/%{oname}/*.h
+%{_includedir}/stun/*.h
+%{_includedir}/stun/usages/*.h
 %{_libdir}/%{name}.a
 %{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
