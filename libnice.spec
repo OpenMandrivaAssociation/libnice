@@ -5,7 +5,7 @@
 
 Name:		libnice
 Version:	0.0.5
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
@@ -78,6 +78,7 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
+%{_libdir}/gstreamer-0.10/*.so
 
 %files -n %{develname}
 %defattr(-,root,root,-)
@@ -89,7 +90,6 @@ rm -rf %{buildroot}
 %{_libdir}/%{name}.so
 %{_libdir}/gstreamer-0.10/*.a
 %{_libdir}/gstreamer-0.10/*.la
-%{_libdir}/gstreamer-0.10/*.so
 %{_libdir}/pkgconfig/%{oname}.pc
 %{_datadir}/gtk-doc/html/%{name}/*
 
