@@ -5,7 +5,7 @@
 
 Name:		libnice
 Version:	0.0.8
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
@@ -14,6 +14,7 @@ Source:		http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildrequires:	libgstreamer-plugins-base-devel
 Buildrequires:	gtk-doc
+BuildRequires:	libgupnp-igd-devel
 Requires:	%{libname} = %{version}
 
 
@@ -53,7 +54,7 @@ you will need to install %{oname}-devel.
 
 %build
 #autoreconf -fiv
-%configure
+%configure2_5x --enable-gupnp
 %make
 
 %install
