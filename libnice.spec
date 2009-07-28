@@ -5,15 +5,15 @@
 
 Name:		libnice
 Version:	0.0.8
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
 Source:		http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Buildrequires:	libgstreamer-plugins-base-devel
-Buildrequires:	gtk-doc
+BuildRequires:	libgstreamer-plugins-base-devel
+BuildRequires:	gtk-doc
 BuildRequires:	libgupnp-igd-devel
 Requires:	%{libname} = %{version}
 
@@ -49,6 +49,16 @@ This package contains the header files, static libraries and development
 documentation for %{oname}. If you like to develop programs using %{oname},
 you will need to install %{oname}-devel.
 
+%package 	utils
+Summary:	Dynamic libraries from %{oname}
+Group:		System/Libraries
+Requires:	%{libname} = %{version}
+Provides: 	%{name}-utils = %{version}-%{release}
+Obsoletes:	libnice
+
+%description 	utils
+This package contains various tools from %{name}.
+
 %prep
 %setup -q 
 
@@ -71,7 +81,7 @@ rm -rf %{buildroot}
 %clean
 rm -rf %{buildroot}
 
-%files
+%files utils
 %defattr(-,root,root,-)
 %doc COPYING README
 %{_bindir}/stun*
