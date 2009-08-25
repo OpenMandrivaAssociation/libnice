@@ -5,16 +5,16 @@
 
 Name:		libnice
 Version:	0.0.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
 Source:		http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	libgstreamer-plugins-base-devel
+BuildRequires:	libgstreamer-plugins-base-devel >= 0.10.0
 BuildRequires:	gtk-doc
-BuildRequires:	libgupnp-igd-devel
+BuildRequires:	libgupnp-igd-devel >= 0.1.2
 Requires:	%{libname} = %{version}
 
 
