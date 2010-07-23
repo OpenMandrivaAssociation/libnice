@@ -4,8 +4,8 @@
 %define develname	%mklibname %{oname} -d
 
 Name:		libnice
-Version:	0.0.12
-Release:	%mkrel 2
+Version:	0.0.13
+Release:	%mkrel 1
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
