@@ -5,7 +5,7 @@
 
 Name:		libnice
 Version:	0.1.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
@@ -51,13 +51,32 @@ you will need to install %{oname}-devel.
 
 %package 	utils
 Summary:	Dynamic libraries from %{oname}
-Group:		System/Libraries
+Group:		Networking/Other
 Requires:	%{libname} = %{version}
 Provides: 	%{name}-utils = %{version}-%{release}
 Obsoletes:	libnice
 
 %description 	utils
 This package contains various tools from %{name}.
+
+%package -n gstreamer0.10-libnice
+Summary: Gstreamer element for ICE support
+Group: System/Libraries
+Requires: %{libname} = %{version}
+Conflicts: %{mklibname nice 0}
+
+%description -n gstreamer0.10-libnice
+Nice is an implementation of the IETF's draft Interactive Connectivity Establishment
+standard (ICE). It provides GLib-based library, libnice.
+
+ICE is useful for applications that want to establish peer-to-peer UDP data streams.
+It automates the process of traversing NATs and provides security against some attacks.
+
+Existing standards that use ICE include the Session Initiation Protocol (SIP) and Jingle,
+XMPP extension for audio/video calls.
+
+This package provides integration with GStreamer. It is used by
+Farsight for RTP transport.
 
 %prep
 %setup -q 
@@ -70,14 +89,7 @@ This package contains various tools from %{name}.
 %install
 rm -rf %{buildroot}
 %makeinstall
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
+rm -f %buildroot%_libdir/gstreamer-0.10/lib*a
 %clean
 rm -rf %{buildroot}
 
@@ -89,6 +101,9 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
+
+%files -n gstreamer0.10-libnice
+%defattr(-,root,root)
 %{_libdir}/gstreamer-0.10/*.so
 
 %files -n %{develname}
@@ -99,8 +114,6 @@ rm -rf %{buildroot}
 %{_libdir}/%{name}.a
 %{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
-%{_libdir}/gstreamer-0.10/*.a
-%{_libdir}/gstreamer-0.10/*.la
 %{_libdir}/pkgconfig/%{oname}.pc
 %{_datadir}/gtk-doc/html/%{name}/*
 
