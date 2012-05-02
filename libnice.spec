@@ -1,17 +1,16 @@
 %define	major	10
 %define	oname	nice
 %define	libname		%mklibname %{oname} %major
-%define develname	%mklibname %{oname} -d
+%define develname	%mklibname %{oname} -d -s
 
 Name:		libnice
 Version:	0.1.0
-Release:	%mkrel 2
+Release:	3
 Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
-Source:		http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 BuildRequires:	libgstreamer-plugins-base-devel >= 0.10.0
 BuildRequires:	gtk-doc
 BuildRequires:	libgupnp-igd-devel >= 0.1.2
@@ -19,27 +18,33 @@ Requires:	%{libname} = %{version}
 
 
 %description
-Nice is an implementation of the IETF's draft Interactive Connectivity Establishment
-standard (ICE). It provides GLib-based library, libnice.
+Nice is an implementation of the IETF's
+draft Interactive Connectivity Establishment
+standard (ICE). It provides GLib-based
+library, libnice.
 
-ICE is useful for applications that want to establish peer-to-peer UDP data streams.
-It automates the process of traversing NATs and provides security against some attacks.
+ICE is useful for applications that want
+to establish peer-to-peer UDP data streams.
+It automates the process of traversing NATs
+and provides security against some attacks.
 
-Existing standards that use ICE include the Session Initiation Protocol (SIP) and Jingle,
+Existing standards that use ICE include the
+Session Initiation Protocol (SIP) and Jingle,
 XMPP extension for audio/video calls.
 
-Nice includes integration with GStreamer. It is used by Farsight for RTP transport. 
+Nice includes integration with GStreamer.
+It is used by Farsight for RTP transport. 
 
 %package -n	%{libname}
 Summary:	Dynamic libraries from %{oname}
 Group:		System/Libraries
-Provides: 	%{name} = %{version}-%{release}
+Provides:	%{name} = %{version}-%{release}
 
 %description -n	%{libname}
 Dynamic libraries from %{name}.
 
 %package -n	%{develname}
-Summary: 	Header files, libraries and development documentation for %{oname}
+Summary:	Header files, libraries and development documentation for %{oname}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{oname}-devel = %{version}-%{release}
@@ -49,11 +54,11 @@ This package contains the header files, static libraries and development
 documentation for %{oname}. If you like to develop programs using %{oname},
 you will need to install %{oname}-devel.
 
-%package 	utils
+%package	utils
 Summary:	Dynamic libraries from %{oname}
 Group:		Networking/Other
 Requires:	%{libname} = %{version}
-Provides: 	%{name}-utils = %{version}-%{release}
+Provides:	%{name}-utils = %{version}-%{release}
 Obsoletes:	libnice
 
 %description 	utils
@@ -87,32 +92,24 @@ Farsight for RTP transport.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall
 rm -f %buildroot%_libdir/gstreamer-0.10/lib*a
-%clean
-rm -rf %{buildroot}
 
 %files utils
-%defattr(-,root,root,-)
 %doc COPYING README
 %{_bindir}/stun*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
 
 %files -n gstreamer0.10-libnice
-%defattr(-,root,root)
 %{_libdir}/gstreamer-0.10/*.so
 
 %files -n %{develname}
-%defattr(-,root,root,-)
 %{_includedir}/%{oname}/*.h
 %{_includedir}/stun/*.h
 %{_includedir}/stun/usages/*.h
 %{_libdir}/%{name}.a
-%{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{oname}.pc
 %{_datadir}/gtk-doc/html/%{name}/*
