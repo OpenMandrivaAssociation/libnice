@@ -1,12 +1,13 @@
 %define	major	10
 %define	oname	nice
 %define	libname		%mklibname %{oname} %major
-%define develname	%mklibname %{oname} -d -s
+%define develname	%mklibname %{oname} -d
+%define develnamest	%mklibname %{oname} -d -s
 
 Name:		libnice
 Version:	0.1.0
-Release:	3
-Summary:	Implementation of the IETF's draft Interactive Connectivity Establishment standard
+Release:	4
+Summary:	Implementation of the IETF's draft I.C.E standard
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
@@ -52,6 +53,18 @@ Provides:	%{oname}-devel = %{version}-%{release}
 %description -n	%{develname}
 This package contains the header files, static libraries and development
 documentation for %{oname}. If you like to develop programs using %{oname},
+you will need to install %{oname}-devel.
+
+%package -n	%{develnamest}
+Summary:	Header files, libraries and development documentation for %{oname}
+Group:		Development/C
+Requires:	%{libname} = %{version}
+Requires:	%{oname}-devel = %{version}
+Provides:	%{oname}-devel-static = %{version}-%{release}
+
+%description -n	%{develnamest}
+This package contains the static libraries
+for %{oname}. If you like to develop programs using %{oname},
 you will need to install %{oname}-devel.
 
 %package	utils
@@ -109,8 +122,9 @@ rm -f %buildroot%_libdir/gstreamer-0.10/lib*a
 %{_includedir}/%{oname}/*.h
 %{_includedir}/stun/*.h
 %{_includedir}/stun/usages/*.h
-%{_libdir}/%{name}.a
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{oname}.pc
 %{_datadir}/gtk-doc/html/%{name}/*
 
+%files -n %{develnamest}
+%{_libdir}/%{name}.a
