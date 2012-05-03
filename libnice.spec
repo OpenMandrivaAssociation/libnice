@@ -3,17 +3,18 @@
 %define	libname		%mklibname %{oname} %major
 %define develname	%mklibname %{oname} -d
 
-Name:		libnice
-Version:	0.1.1
-Release:	%mkrel 5
 Summary:	Implementation of the IETF's draft I.C.E standard
+Name:		libnice
+Version:	0.1.2
+Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-BuildRequires:	glib2-devel
-BuildRequires:	libgupnp-igd-devel >= 0.1.2
-BuildRequires:	libgstreamer-plugins-base-devel
+
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	pkgconfig(gupnp-igd-1.0)
 
 %description
 Nice is an implementation of the IETF's draft Interactive Connectivity
@@ -75,7 +76,6 @@ Gstreamer elements from %{oname}.
 %setup -q
 
 %build
-#autoreconf -fiv
 %configure2_5x \
 	--enable-gupnp \
 	--disable-static
