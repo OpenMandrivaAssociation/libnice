@@ -5,7 +5,7 @@
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.2
+Version:	0.1.3
 Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
