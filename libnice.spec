@@ -1,19 +1,20 @@
-%define	major		10
-%define	oname		nice
-%define	libname		%mklibname %{oname} %major
-%define develname	%mklibname %{oname} -d
+%define	gstapi	1.0
+%define	oname	nice
+%define	major	10
+%define	libname	%mklibname %{oname} %{major}
+%define devname	%mklibname %{oname} -d
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
 Version:	0.1.3
-Release:	1
+Release:	2
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 URL:		http://nice.freedesktop.org/wiki/
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
 
 %description
@@ -30,27 +31,6 @@ Existing standards that use ICE include the Session Initiation Protocol
 Nice includes integration with GStreamer. It is used by Farsight for RTP
 transport. 
 
-%package -n	%{libname}
-Summary:	Dynamic libraries from %{oname}
-Group:		System/Libraries
-Provides:	%{name} = %{version}-%{release}
-Obsoletes:	%{_lib}nice1 < 0.1.1-4
-
-%description -n	%{libname}
-Dynamic libraries from %{name}.
-
-%package -n	%{develname}
-Summary: 	Header files, libraries and development documentation for %{oname}
-Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{oname}-devel = %{version}-%{release}
-Provides:       lib%{oname}-devel = %{version}-%{release}
-
-%description -n	%{develname}
-This package contains the header files, static libraries and development
-documentation for %{oname}. If you like to develop programs using %{oname},
-you will need to install %{oname}-devel.
-
 %package 	utils
 Summary:	Dynamic libraries from %{oname}
 Group:		System/Libraries
@@ -61,15 +41,36 @@ Obsoletes:	libnice
 %description 	utils
 This package contains various tools from %{name}.
 
-%package -n	gstreamer0.10-%{oname}
+%package -n	%{libname}
+Summary:	Dynamic libraries from %{oname}
+Group:		System/Libraries
+Provides:	%{name} = %{version}-%{release}
+Obsoletes:	%{_lib}nice1 < 0.1.1-4
+
+%description -n	%{libname}
+Dynamic libraries from %{name}.
+
+%package -n	%{devname}
+Summary: 	Header files, libraries and development documentation for %{oname}
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{oname}-devel = %{version}-%{release}
+
+%description -n	%{devname}
+This package contains the header files, static libraries and development
+documentation for %{oname}. If you like to develop programs using %{oname},
+you will need to install %{oname}-devel.
+
+%package -n	gstreamer%{gstapi}-%{oname}
 Summary:	Gstreamer elements from %{oname}
 Group:		System/Libraries
 Requires:	%{libname} = %{version}
 # conflict with older %%libname that had the gst .so, before the split
 Conflicts:	%{_lib}nice0 < 0.1.0
 Conflicts:	%{_lib}nice1 < 0.1.0
+Obsoletes:	gstreamer0.10-%{oname}
 
-%description -n	gstreamer0.10-%{oname}
+%description -n	gstreamer%{gstapi}-%{oname}
 Gstreamer elements from %{oname}.
 
 %prep
@@ -89,17 +90,17 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %install
 %makeinstall_std
 
-# don't ship .la
-find %{buildroot} -name "*.la" -delete
-
 #% check
 #disabled due fails
 #make check
 
+%files utils
+%{_bindir}/stun*
+
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
 
-%files -n %{develname}
+%files -n %{devname}
 %doc AUTHORS COPYING COPYING.LGPL COPYING.MPL NEWS README
 %{_includedir}/%{oname}/*.h
 %{_includedir}/stun/*.h
@@ -108,8 +109,6 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/%{oname}.pc
 %{_datadir}/gtk-doc/html/%{name}/*
 
-%files utils
-%{_bindir}/stun*
+%files -n gstreamer%{gstapi}-%{oname}
+%{_libdir}/gstreamer-%{gstapi}/*.so
 
-%files -n gstreamer0.10-%{oname}
-%{_libdir}/gstreamer-0.10/*.so
