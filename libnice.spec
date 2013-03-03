@@ -95,7 +95,8 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 #make check
 
 %files utils
-%{_bindir}/stun*
+%{_bindir}/s*
+%{_bindir}/threaded-example
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
