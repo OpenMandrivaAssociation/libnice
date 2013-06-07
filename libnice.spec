@@ -10,7 +10,7 @@ Version:	0.1.4
 Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
-URL:		http://nice.freedesktop.org/wiki/
+Url:		http://nice.freedesktop.org/wiki/
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
 
 BuildRequires:	pkgconfig(glib-2.0)
@@ -99,7 +99,7 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %{_bindir}/threaded-example
 
 %files -n %{libname}
-%{_libdir}/*.so.%{major}*
+%{_libdir}/libnice.so.%{major}*
 
 %files -n %{devname}
 %doc AUTHORS COPYING COPYING.LGPL COPYING.MPL NEWS README
