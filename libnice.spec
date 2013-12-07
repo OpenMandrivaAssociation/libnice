@@ -7,7 +7,7 @@
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
 Version:	0.1.4
-Release:	2
+Release:	3
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 Url:		http://nice.freedesktop.org/wiki/
