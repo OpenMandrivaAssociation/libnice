@@ -1,3 +1,4 @@
-
-sources:
+removed_sources:
   libnice-0.1.7.tar.gz: 94d459fc409da9cf5e4ac30d680ee6c0ded2cb64
+sources:
+  libnice-0.1.8.tar.gz: c8f9cfb7cd683197605af0a9823fd55318d21d1b
