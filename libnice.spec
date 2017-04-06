@@ -1,21 +1,21 @@
-%define	gstapi 1.0
-%define	oname nice
-%define	major 10
-%define	libname %mklibname %{oname} %{major}
+%define gstapi 1.0
+%define oname nice
+%define major 10
+%define libname %mklibname %{oname} %{major}
 %define devname %mklibname %{oname} -d
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.13
+Version:	0.1.14
 Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 Url:		http://nice.freedesktop.org/wiki/
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
+
 %description
 Nice is an implementation of the IETF's draft Interactive Connectivity
 Establishment standard (ICE). It provides GLib-based library, libnice.
@@ -30,7 +30,7 @@ Existing standards that use ICE include the Session Initiation Protocol
 Nice includes integration with GStreamer. It is used by Farsight for RTP
 transport. 
 
-%package 	utils
+%package utils
 Summary:	Dynamic libraries from %{oname}
 Group:		System/Libraries
 Requires:	%{libname} = %{version}-%{release}
@@ -40,7 +40,7 @@ Obsoletes:	libnice
 %description 	utils
 This package contains various tools from %{name}.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Dynamic libraries from %{oname}
 Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
@@ -49,7 +49,7 @@ Obsoletes:	%{_lib}nice1 < 0.1.1-4
 %description -n	%{libname}
 Dynamic libraries from %{name}.
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary: 	Header files, libraries and development documentation for %{oname}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
@@ -60,7 +60,7 @@ This package contains the header files, static libraries and development
 documentation for %{oname}. If you like to develop programs using %{oname},
 you will need to install %{oname}-devel.
 
-%package -n	gstreamer%{gstapi}-%{oname}
+%package -n gstreamer%{gstapi}-%{oname}
 Summary:	Gstreamer elements from %{oname}
 Group:		System/Libraries
 Requires:	%{libname} = %{version}
