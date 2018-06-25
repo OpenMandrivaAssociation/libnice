@@ -7,7 +7,7 @@
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
 Version:	0.1.14
-Release:	1
+Release:	2
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 Url:		http://nice.freedesktop.org/wiki/
@@ -16,6 +16,7 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
 BuildRequires:	pkgconfig(gnutls)
+BuildRequires:	gobject-introspection
 
 %description
 Nice is an implementation of the IETF's draft Interactive Connectivity
@@ -108,7 +109,8 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{oname}.pc
 %{_datadir}/gtk-doc/html/%{name}/*
+%{_libdir}/girepository-1.0/Nice-0.1.typelib
+%{_datadir}/gir-1.0/Nice-0.1.gir
 
 %files -n gstreamer%{gstapi}-%{oname}
 %{_libdir}/gstreamer-%{gstapi}/*.so
-
