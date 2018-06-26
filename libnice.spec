@@ -16,7 +16,7 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
 BuildRequires:	pkgconfig(gnutls)
-BuildRequires:	gobject-introspection
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
 
 %description
 Nice is an implementation of the IETF's draft Interactive Connectivity
