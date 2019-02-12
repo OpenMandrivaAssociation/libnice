@@ -1,3 +1,5 @@
+%global optflags %{optflags} -Wno-error=cast-align
+
 %define gstapi 1.0
 %define oname nice
 %define major 10
@@ -6,8 +8,8 @@
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.14
-Release:	4
+Version:	0.1.15
+Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 Url:		http://nice.freedesktop.org/wiki/
@@ -96,7 +98,6 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
 %files utils
 %{_bindir}/s*
-%{_bindir}/threaded-example
 
 %files -n %{libname}
 %{_libdir}/libnice.so.%{major}*
