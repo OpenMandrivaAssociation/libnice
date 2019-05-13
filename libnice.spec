@@ -8,7 +8,7 @@
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.15
+Version:	0.1.16
 Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
@@ -77,7 +77,7 @@ Obsoletes:	gstreamer0.10-%{oname}
 Gstreamer elements from %{oname}.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %configure \
@@ -87,10 +87,10 @@ Gstreamer elements from %{oname}.
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 #% check
 #disabled due fails
