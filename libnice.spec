@@ -104,7 +104,6 @@ Gstreamer elements from %{oname}.
 %{_includedir}/stun/usages/*.h
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{oname}.pc
-%{_datadir}/gtk-doc/html/%{name}/*
 %{_libdir}/girepository-1.0/Nice-0.1.typelib
 %{_datadir}/gir-1.0/Nice-0.1.gir
 
