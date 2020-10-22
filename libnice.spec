@@ -19,6 +19,7 @@ BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	meson
 
 %description
 Nice is an implementation of the IETF's draft Interactive Connectivity
@@ -80,17 +81,16 @@ Gstreamer elements from %{oname}.
 %autosetup -p1
 
 %build
-%configure \
-	--enable-gupnp 
+%meson
 
 # disable rpath
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
-%make_build
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 #% check
 #disabled due fails
