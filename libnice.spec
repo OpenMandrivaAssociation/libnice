@@ -8,7 +8,7 @@
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.18
+Version:	0.1.19
 Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
@@ -39,10 +39,10 @@ transport.
 Summary:	Dynamic libraries from %{oname}
 Group:		System/Libraries
 Requires:	%{libname} = %{version}-%{release}
-Provides: 	%{name}-utils = %{version}-%{release}
+Provides:	%{name}-utils = %{version}-%{release}
 Obsoletes:	libnice
 
-%description 	utils
+%description utils
 This package contains various tools from %{name}.
 
 %package -n %{libname}
@@ -51,16 +51,16 @@ Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
 Obsoletes:	%{_lib}nice1 < 0.1.1-4
 
-%description -n	%{libname}
+%description -n %{libname}
 Dynamic libraries from %{name}.
 
 %package -n %{devname}
-Summary: 	Header files, libraries and development documentation for %{oname}
+Summary:	Header files, libraries and development documentation for %{oname}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{oname}-devel = %{version}-%{release}
 
-%description -n	%{devname}
+%description -n %{devname}
 This package contains the header files, static libraries and development
 documentation for %{oname}. If you like to develop programs using %{oname},
 you will need to install %{oname}-devel.
@@ -74,7 +74,7 @@ Conflicts:	%{_lib}nice0 < 0.1.0
 Conflicts:	%{_lib}nice1 < 0.1.0
 Obsoletes:	gstreamer0.10-%{oname}
 
-%description -n	gstreamer%{gstapi}-%{oname}
+%description -n gstreamer%{gstapi}-%{oname}
 Gstreamer elements from %{oname}.
 
 %prep
