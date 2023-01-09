@@ -8,8 +8,8 @@
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.19
-Release:	2
+Version:	0.1.21
+Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 Url:		http://nice.freedesktop.org/wiki/
@@ -40,7 +40,7 @@ Summary:	Dynamic libraries from %{oname}
 Group:		System/Libraries
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-utils = %{version}-%{release}
-Obsoletes:	libnice
+Obsoletes:	libnice < 0.1.21-1
 
 %description utils
 This package contains various tools from %{name}.
@@ -72,7 +72,7 @@ Requires:	%{libname} = %{version}
 # conflict with older %%libname that had the gst .so, before the split
 Conflicts:	%{_lib}nice0 < 0.1.0
 Conflicts:	%{_lib}nice1 < 0.1.0
-Obsoletes:	gstreamer0.10-%{oname}
+Obsoletes:	gstreamer0.10-%{oname} < 0.1.21-1
 
 %description -n gstreamer%{gstapi}-%{oname}
 Gstreamer elements from %{oname}.
