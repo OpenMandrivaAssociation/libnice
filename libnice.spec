@@ -1,5 +1,3 @@
-%global optflags %{optflags} -Wno-error=cast-align
-
 %define gstapi 1.0
 %define oname nice
 %define major 10
@@ -9,11 +7,12 @@
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
 Version:	0.1.21
-Release:	1
+Release:	2
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
 Url:		http://nice.freedesktop.org/wiki/
 Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
+Patch0:		https://cgit.freedesktop.org/libnice/libnice/commit/?id=f4e2838f664f4007838f4c635d7a4fe653aae68b.patch
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
