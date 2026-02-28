@@ -6,13 +6,12 @@
 
 Summary:	Implementation of the IETF's draft I.C.E standard
 Name:		libnice
-Version:	0.1.21
-Release:	5
+Version:	0.1.23
+Release:	1
 License:	LGPLv2+ and MPLv1+
 Group:		System/Libraries
-Url:		https://nice.freedesktop.org/wiki/
-Source0:	http://nice.freedesktop.org/releases/%{name}-%{version}.tar.gz
-Patch0:		https://cgit.freedesktop.org/libnice/libnice/commit/?id=f4e2838f664f4007838f4c635d7a4fe653aae68b.patch
+Url:		https://libnice.freedesktop.org/
+Source0:	https://libnice.freedesktop.org/releases/libnice-%{version}.tar.gz
 Patch1:		libnice-0.1.21-gupnp-igd-1.6.patch
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi})
